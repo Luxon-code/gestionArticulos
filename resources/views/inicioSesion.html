@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/sweetalert2@11.js"></script>
+    <script src="./js/usuario.js"></script>
+    <title>Inicio Sesion</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="row bg-secondary fixed-top">
+            <h1 class="text-center text-white">Bienvenido a nuestro sistema</h1>
+        </header>
+        <section class="row d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+                <div class="form-group row w-25 shadow p-3 mb-5 bg-body rounded">
+                        <h4 class="text-center">Iniciar Sesion</h4>
+                    <div class="col-sm">
+                        <label for="txtNombreUser" class="form-label">Nombre Usuario:</label>
+                        <input type="text" id="txtNombreUser" name="txtNombreUser" class="form-control">
+                    </div>
+                    <div class="campo">
+                        <label for="txtContraseña" class="form-label">Contraseña:</label>
+                        <input type="password" id="txtContraseña" name="txtContraseña" class="form-control">
+                    </div>
+                    <a href="/registrarUsuario" class="text-center">Registrarse como nuevo Usuario</a>
+                    <div class="d-flex justify-content-center mt-2">
+                        <input type="button" value="Ingresar" id="btnIngresar" onclick="iniciarSesion()" class="btn btn-primary">
+                    </div>
+                </div>
+        </section>
+        <footer class="row bg-secondary fixed-bottom">
+            <h3 class="text-center text-white">Todos los derechos reservados - Joseph Trujillo</h3>
+        </footer>
+    </div>
+</body>
+</html>
