@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\enviarCorreo;
 use App\Models\Usuario;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UsuarioController extends Controller
 {
@@ -25,7 +27,7 @@ class UsuarioController extends Controller
      */
     public function inciarSesion(Request $request){
         try{
-            $result = Usuario::where('usuNombre', $request->usuNombre)->where('usuContraseña',$request->usuContraseña)->get();
+            $result = Usuario::where('usuNombre', $request->usuNombre)->where('usuContraseña',md5($request->usuContraseña))->get();
             if($result->count()>0){
                 $response = ['estado'=>true];
             }else{
@@ -47,15 +49,17 @@ class UsuarioController extends Controller
         try{
             $usuario = new Usuario();
             $usuario->usuNombre = $request->usuNombre;
-            $usuario->usuContraseña = $request->usuContraseña;
+            $usuario->usuContraseña = md5($request->usuContraseña);
+            $usuario->usuCorreo = $request->usuCorreo;
             $result = $usuario->save();
             if($result){
+                Mail::to($request->usuCorreo)->send(new enviarCorreo($usuario));
                 $response = ['estado'=>true,'mensaje'=>'Usuario creado'];
             }else{
                 $response = ['estado'=>false,'mensaje'=>'Problemas al crear Usuario'];
             }
         }catch(Exception $e){
-            $response = ['estado'=>true,'mensaje'=>$e->getMessage()];
+            $response = ['estado'=>false,'mensaje'=>$e->getMessage()];
         }
         return $response;
     }

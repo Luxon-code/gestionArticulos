@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('usuNombre')->unique();
             $table->string('usuContraseña')->unique();
+            $table->string('usuCorreo')->unique();
             $table->timestamps();
         });
     }

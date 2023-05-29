@@ -3,6 +3,7 @@ function create(){
     axios.post(url,{
         'usuNombre': txtNombreUser.value,
         'usuContraseña': txtContraseña.value,
+        'usuCorreo': txtCorreo.value,
     }).then(function(response){
         if(response.data.estado){
             Swal.fire('Registro',response.data.mensaje,'success')
